@@ -1,7 +1,7 @@
 import instance from "./customize-axios";
 
-const fetchAllUser = () => {
-    return instance.get("api/users?page=2")
+const fetchAllUser = (page) => {
+    return instance.get(`api/users?page=${page}`)
 }
 
 export {fetchAllUser}
