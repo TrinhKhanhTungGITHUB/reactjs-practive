@@ -4,4 +4,8 @@ const fetchAllUser = (page) => {
     return instance.get(`api/users?page=${page}`)
 }
 
-export {fetchAllUser}
+const postCreateUser = (name, job) => {
+    return instance.post(`api/users`, { name, job })
+}
+
+export { fetchAllUser, postCreateUser }
