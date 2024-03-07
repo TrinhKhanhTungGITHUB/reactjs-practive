@@ -9,15 +9,12 @@ import { Row } from 'react-bootstrap'
 function App() {
   return (
     <div className='app-container'>
-      {/* <Container>
-          <Row> */}
-
       <Header />
-      <TableUsers />
-
-      {/* </Row>
-
-        </Container> */}
+      <Container>
+        <Row>
+          <TableUsers />
+        </Row>
+      </Container>
     </div>
   );
 }
