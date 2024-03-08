@@ -17,7 +17,7 @@ const ModalAddNew = (props) => {
             setJob('')
             setName('')
             toast.success('Bạn đã thêm thành công')
-            handleUpdateTable({ first_name: name,id:res.id})
+            handleUpdateTable({ first_name: name, id: res.id })
         }
         else {
             toast.error('Bạn gặp lỗi ')
@@ -25,7 +25,9 @@ const ModalAddNew = (props) => {
     }
     return (
         <>
-            <Modal show={show} onHide={handleClose}>
+            <Modal show={show} onHide={handleClose}
+                backdrop="static" keyboard={false}
+            >
                 <Modal.Header closeButton>
                     <Modal.Title>Add New User</Modal.Title>
                 </Modal.Header>
