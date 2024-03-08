@@ -9,8 +9,11 @@ const postCreateUser = (name, job) => {
 }
 
 const putUpdateUser = (name, job,id) => {
-    console.log({name,job});
     return instance.put(`/api/users/${id}`, { name, job });
 }
 
-export { fetchAllUser, postCreateUser, putUpdateUser }
+const deleteUpdateUser = (id) => {
+    return instance.delete(`/api/users/${id}`);
+}
+
+export { fetchAllUser, postCreateUser, putUpdateUser, deleteUpdateUser }
