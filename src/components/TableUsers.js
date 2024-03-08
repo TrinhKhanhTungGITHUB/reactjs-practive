@@ -4,6 +4,8 @@ import { fetchAllUser } from '../services/UserService';
 import ReactPaginate from 'react-paginate';
 import ModalAddNew from './ModalAddNew';
 import ModalEditUser from './ModalEditUser';
+// eslint-disable-next-line no-unused-vars
+import _ from "lodash";
 
 
 const TableUsers = (props) => {
@@ -36,6 +38,13 @@ const TableUsers = (props) => {
     const handleEditUser = (user) => {
         setIsShowModalEdit(true)
         setDataUserEdit(user)
+    }
+
+    const handleEditUserFromModal = (user) => {
+        let cloneListUsers = _.cloneDeep(listUsers);
+        let index = listUsers.findIndex(item => item.id === user.id)
+        cloneListUsers[index].first_name = user.first_name;
+        setListUsers(cloneListUsers);
     }
 
     const getUsers = async (page) => {
@@ -115,7 +124,7 @@ const TableUsers = (props) => {
                 show={isShowModalEdit}
                 handleClose={handleClose}
                 dataUserEdit={dataUserEdit}
-            // handleUpdateTable={handleUpdateTable}
+                handleEditUserFromModal={handleEditUserFromModal}
             />
         </>
 

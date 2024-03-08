@@ -16,11 +16,11 @@ const ModalAddNew = (props) => {
             handleClose()
             setJob('')
             setName('')
-            toast.success('Alo')
+            toast.success('Bạn đã thêm thành công')
             handleUpdateTable({ first_name: name,id:res.id})
         }
         else {
-            toast.success('Lỗi tùm lum')
+            toast.error('Bạn gặp lỗi ')
         }
     }
     return (

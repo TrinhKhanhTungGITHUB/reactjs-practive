@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import { Button, Modal } from 'react-bootstrap';
-// import { postCreateUser } from '../services/UserService';
-// import { toast } from "react-toastify"
+import { putUpdateUser } from '../services/UserService';
+import { toast } from "react-toastify"
 
 const ModalEditUser = (props) => {
-    const { show, handleClose, dataUserEdit } = props;
+    const { show, handleClose, dataUserEdit, handleEditUserFromModal } = props;
     const [name, setName] = useState('');
     const [job, setJob] = useState('');
 
@@ -12,22 +12,24 @@ const ModalEditUser = (props) => {
         if (show) {
             setName(dataUserEdit.first_name)
         }
-    },[dataUserEdit, show])
+    }, [dataUserEdit, show])
 
     const handleEditUser = async () => {
-        // let res = await postCreateUser(name, job);
-        // console.log("name:", name, "job", job);
-        // console.log(res);
-        // if (res && res.id) {
-        //     handleClose()
-        //     setJob('')
-        //     setName('')
-        //     toast.success('Alo')
-        //     handleUpdateTable({ first_name: name,id:res.id})
-        // }
-        // else {
-        //     toast.success('Lỗi tùm lum')
-        // }
+        let res = await putUpdateUser(name, job, dataUserEdit.id);
+        if (res && res.updatedAt) {
+            setJob('')
+            setName('')
+            handleEditUserFromModal({
+                first_name: name,
+                id: dataUserEdit.id
+            })
+
+            handleClose()
+            toast.success('Đã sửa thành công')
+        }
+        else {
+            toast.success('Lỗi tùm lum')
+        }
     }
 
 
