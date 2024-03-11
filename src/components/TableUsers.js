@@ -1,3 +1,4 @@
+
 /* eslint-disable array-callback-return */
 import Table from 'react-bootstrap/Table';
 import _ from "lodash";
@@ -58,9 +59,6 @@ const TableUsers = (props) => {
         if (res && res.data) {
             // setTotalUsers(res.total)
             setTotalPages(res.total_pages)
-            setListUsers(res.data)
-        }
-    }
 
     //Paginate List
     const handlePageClick = (event) => {

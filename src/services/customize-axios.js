@@ -6,10 +6,12 @@ const instance = axios.create({
   //   'Content-Type': 'application/json', // Đặt header mặc định cho tất cả các yêu cầu
   //   'Authorization': 'Bearer YOUR_ACCESS_TOKEN', // Đặt header Authorization mặc định
   // },
+
 });
 
 // Add a request interceptor
 instance.interceptors.request.use(function (config) {
+
   // Do something before request is sent
   return config;
 }, function (error) {
@@ -28,5 +30,6 @@ instance.interceptors.response.use(function (response) {
   // Do something with response error
   return Promise.reject(error);
 });
+
 
 export default instance

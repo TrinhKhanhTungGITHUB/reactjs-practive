@@ -1,5 +1,6 @@
 import instance from "./customize-axios";
 
+
 const fetchAllUser = (page) => {
     return instance.get(`api/users?page=${page}`)
 }
@@ -17,3 +18,4 @@ const deleteUpdateUser = (id) => {
 }
 
 export { fetchAllUser, postCreateUser, putUpdateUser, deleteUpdateUser }
+
