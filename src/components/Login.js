@@ -1,23 +1,17 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { loginApi } from '../services/UserService';
 import { toast } from 'react-toastify';
 import { useNavigate } from "react-router-dom"
-
+import { UserContext } from '../context/UserContext'
 const Login = () => {
     const navigate = useNavigate();
+    const { loginContext } = useContext(UserContext);
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [isShowPassword, setIsShowPassword] = useState('');
 
     const [loadingAPI, setLoadingAPI] = useState(false);
-
-    useEffect(() => {
-        let token = localStorage.getItem("token");
-        if (token) {
-            navigate("/")
-        }
-    }, []);
 
     const handleLogin = async () => {
         if (!email || !password) {
@@ -27,7 +21,7 @@ const Login = () => {
         setLoadingAPI(true)
         let res = await loginApi(email, password)
         if (res && res.token) {
-            localStorage.setItem("token", res.token)
+            loginContext(email, res.token)
             navigate('/')
         }
         else {
@@ -38,6 +32,9 @@ const Login = () => {
         setLoadingAPI(false);
     }
 
+    const handleGoBack = () => {
+        navigate("/");
+    }
     return (
         <>
             <div className='login-container col-12 col-sm-4'>
@@ -62,12 +59,13 @@ const Login = () => {
                     disabled={(email && password) ? false : true}
                     onClick={() => handleLogin()}
                 >
-                        {loadingAPI && <i className='fa-solid fa-sync fa-spin'></i>}
-&nbsp;Login
+                    {loadingAPI && <i className='fa-solid fa-sync fa-spin'></i>}
+                    &nbsp;Login
                 </button>
 
                 <div className='back'>
-                    <i className='fa-solid fa-angles-left'></i>Go Back
+                    <i className='fa-solid fa-angles-left'></i>
+                    <span onClick={() => { handleGoBack()}}>&nbsp;Go Back</span>
                 </div>
             </div >
         </>
