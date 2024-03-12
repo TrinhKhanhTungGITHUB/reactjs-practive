@@ -6,8 +6,20 @@ import { ToastContainer } from 'react-toastify';
 import { Routes, Route, Link } from 'react-router-dom';
 import Home from './components/Home';
 import Login from './components/Login';
+import { useContext, useEffect } from 'react';
+import { UserContext } from "./context/UserContext"
 
 function App() {
+  const { user, loginContext } = useContext(UserContext);
+
+  console.log(user);
+
+  // Giải quyết tình trạng load lại trang mất tên người dùng
+  useEffect(() => {
+    if (localStorage.getItem('token')) {
+      loginContext(localStorage.getItem('email'), localStorage.getItem('token'))
+    }
+  },[])
 
   return (
     <>
