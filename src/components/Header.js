@@ -3,10 +3,19 @@ import Container from 'react-bootstrap/Container';
 
 import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import logoApp from '../assets/images/logo192.png';
+import { toast } from 'react-toastify';
 
 function Header(props) {
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        localStorage.removeItem('token');
+        navigate("/");
+        toast.success('Logout');
+    }
+
     return (<>
         <Navbar expand="lg" className="bg-body-tertiary">
             <Container>
@@ -20,17 +29,18 @@ function Header(props) {
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
                         <NavLink to="/" className="nav-link">Home</NavLink>
+                       {} 
                         <NavLink to="/users" className="nav-link"> Manage Users</NavLink>
                     </Nav>
                     <Nav>
                         <NavDropdown title="Setting">
-                            <NavDropdown.Item href="/login">Login</NavDropdown.Item>
-                            <NavDropdown.Item href="/logout">  Logout</NavDropdown.Item>
-                        </NavDropdown>
-                    </Nav>
-                </Navbar.Collapse>
-            </Container>
-        </Navbar>
+                            <NavLink to="/login" className='dropdown-item'>Login</NavLink>
+                            <NavDropdown.Item onClick={() => handleLogout()} > Logout</NavDropdown.Item>
+                    </NavDropdown>
+                </Nav>
+            </Navbar.Collapse>
+        </Container>
+    </Navbar >
     </>);
 }
 
