@@ -78,12 +78,13 @@ const TableUsers = (props) => {
         cloneListUsers[index].first_name = user.first_name;
         setListUsers(cloneListUsers);
     }
-    // Delete
+    // Delete 
+         // Modal + Data
     const handleDeleteUser = (user) => {
         setIsShowModalDelete(true)
         setDataUserDelete(user)
     }
-
+         // Fun Delete
     const handleDeleteUserFromModal = (user) => {
         setSortBy(sortBy);
         setSortFiled(sortField);

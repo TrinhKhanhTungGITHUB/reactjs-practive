@@ -1,12 +1,12 @@
 import { Button, Modal } from 'react-bootstrap';
-import { deleteUpdateUser } from '../services/UserService';
+import { deleteUser } from '../services/UserService';
 import { toast } from "react-toastify"
 
 const ModalConfirm = (props) => {
     const { show, handleClose, dataUserDelete, handleDeleteUserFromModal } = props;
 
     const confirmDelete = async () => {
-        let res = await deleteUpdateUser(dataUserDelete.id)
+        let res = await deleteUser(dataUserDelete.id)
         console.log(res);
         if (res && +res.statusCode === 204) {
             toast.success('Bạn đã xoá thành công')

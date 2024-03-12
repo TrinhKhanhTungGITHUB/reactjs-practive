@@ -8,12 +8,17 @@ const postCreateUser = (name, job) => {
     return instance.post(`api/users`, { name, job })
 }
 
-const putUpdateUser = (name, job,id) => {
+const putUpdateUser = (name, job, id) => {
     return instance.put(`/api/users/${id}`, { name, job });
 }
 
-const deleteUpdateUser = (id) => {
+const deleteUser = (id) => {
     return instance.delete(`/api/users/${id}`);
 }
 
-export { fetchAllUser, postCreateUser, putUpdateUser, deleteUpdateUser }
+const loginApi = (email, password) => {
+    return instance.post(`api/login`, { email, password })
+}
+
+
+export { fetchAllUser, postCreateUser, putUpdateUser, deleteUser, loginApi }
