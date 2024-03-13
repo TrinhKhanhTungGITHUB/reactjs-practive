@@ -8,6 +8,7 @@ import Home from './components/Home';
 import Login from './components/Login';
 import { useContext, useEffect } from 'react';
 import { UserContext } from "./context/UserContext"
+import AppRouters from './components/routers/AppRouters';
 
 function App() {
   const { user, loginContext } = useContext(UserContext);
@@ -26,12 +27,7 @@ function App() {
       <div className='app-container'>
         <Header />
         <Container>
-
-          <Routes>
-            <Route path='/' element={<Home />} />
-            <Route path='/users' element={<TableUsers />} />
-            <Route path='/login' element={<Login />} />
-          </Routes>
+          <AppRouters/>
         </Container>
 
       </div>
