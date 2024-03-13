@@ -3,6 +3,7 @@ import Home from "../Home";
 import TableUsers from "../TableUsers";
 import Login from "../Login";
 import PrivateRouter from "./PrivateRouter";
+import NotFound from "./NotFound"
 
 const AppRouters = () => {
     return (
@@ -15,6 +16,7 @@ const AppRouters = () => {
                 </PrivateRouter>
             }
             />
+            <Route path="*" element={<NotFound />} />
         </Routes>
     )
 }

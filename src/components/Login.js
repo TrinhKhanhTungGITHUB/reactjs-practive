@@ -19,7 +19,7 @@ const Login = () => {
             return
         }
         setLoadingAPI(true)
-        let res = await loginApi(email, password)
+        let res = await loginApi(email.trim(), password)
         if (res && res.token) {
             loginContext(email, res.token)
             navigate('/')
@@ -34,6 +34,12 @@ const Login = () => {
 
     const handleGoBack = () => {
         navigate("/");
+    }
+
+    const handlePressEnter = (event) => {
+        if (event && event.key === "Enter") {
+            handleLogin();
+        }
     }
     return (
         <>
@@ -51,6 +57,7 @@ const Login = () => {
                     />
                     <i className={isShowPassword ? 'fa-solid fa-eye' : "fa-solid fa-eye-slash"}
                         onClick={() => setIsShowPassword(!isShowPassword)}
+                        onKeyDown={(event) => handlePressEnter(event)}
                     >
                     </i>
                 </div>
@@ -65,7 +72,7 @@ const Login = () => {
 
                 <div className='back'>
                     <i className='fa-solid fa-angles-left'></i>
-                    <span onClick={() => { handleGoBack()}}>&nbsp;Go Back</span>
+                    <span onClick={() => { handleGoBack() }}>&nbsp;Go Back</span>
                 </div>
             </div >
         </>

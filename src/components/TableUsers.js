@@ -79,12 +79,12 @@ const TableUsers = (props) => {
         setListUsers(cloneListUsers);
     }
     // Delete 
-         // Modal + Data
+    // Modal + Data
     const handleDeleteUser = (user) => {
         setIsShowModalDelete(true)
         setDataUserDelete(user)
     }
-         // Fun Delete
+    // Fun Delete
     const handleDeleteUserFromModal = (user) => {
         setSortBy(sortBy);
         setSortFiled(sortField);
@@ -183,9 +183,9 @@ const TableUsers = (props) => {
     }
     return (
         <>
-            <div className='my-3 add-new'>
+            <div className='my-3 add-new d-sm-flex'>
                 <span><b>List Users:</b></span>
-                <div className='group-btns'>
+                <div className='group-btns mt-sm-0 mt-2'>
                     <label htmlFor='test' className='btn btn-warning'>
                         <i className="fa-solid fa-file-import"></i>Import
                     </label>
@@ -208,7 +208,7 @@ const TableUsers = (props) => {
                 </div>
 
             </div>
-            <div className='col-4 my-3'>
+            <div className='col-12 col-sm-4 my-3'>
                 <input
                     className='form-control'
                     placeholder='Search users by email ...'
@@ -218,6 +218,7 @@ const TableUsers = (props) => {
                     }}
                 />
             </div>
+            <div className='customize-table'>
             <Table striped bordered hover>
                 <thead>
                     <tr>
@@ -280,6 +281,8 @@ const TableUsers = (props) => {
                         })}
                 </tbody>
             </Table>
+            </div>
+          
             <ReactPaginate
                 breakLabel="..."
                 nextLabel="next >"
